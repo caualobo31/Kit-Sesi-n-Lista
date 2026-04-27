@@ -535,16 +535,21 @@
     .price-installments { font-size: 12px; color: var(--muted); margin-top: 4px; }
     .price-savings { font-size: 12px; color: var(--green-ok); font-weight: 700; margin-top: 4px; }
     .basic-nudge {
-      margin-top: 16px;
+      margin-top: 20px;
       text-align: center;
-      font-size: 12px;
-      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal-dark);
+      background: #e8f7f5;
+      border: 1.5px solid var(--teal);
+      border-radius: 10px;
+      padding: 10px 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 4px;
     }
-    .basic-nudge i { color: var(--teal); width: 16px; height: 16px; }
+    .basic-nudge i { color: var(--teal); width: 18px; height: 18px; }
     .pricing-social {
       text-align: center;
       font-size: 13px;
@@ -727,6 +732,144 @@
       .benefits-grid { grid-template-columns: 1fr; }
       #hero h1 { font-size: 24px; }
       .hero-bullets { flex-direction: column; align-items: flex-start; padding: 0 8px; }
+    }
+
+    /* ===== POPUP UPSELL ===== */
+    #upsell-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    #upsell-overlay.active {
+      display: flex;
+      animation: overlay-in 0.25s ease forwards;
+    }
+    @keyframes overlay-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    #upsell-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 36px 32px 28px;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      animation: card-in 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes card-in {
+      from { opacity: 0; transform: scale(0.88); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    #upsell-close {
+      position: absolute;
+      top: 12px; right: 16px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+    }
+    #upsell-close:hover { color: var(--dark); }
+    .upsell-tag {
+      display: inline-block;
+      background: #fff3cd;
+      color: #856404;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+    .upsell-headline {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .upsell-body {
+      font-size: 14px;
+      color: var(--body);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .upsell-price-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .upsell-price-old {
+      font-size: 13px;
+      color: var(--red);
+      text-decoration: line-through;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+    .upsell-price-new {
+      font-size: 44px;
+      font-weight: 900;
+      color: var(--teal-dark);
+    }
+    .upsell-price-new sup { font-size: 18px; font-weight: 700; vertical-align: super; }
+    .upsell-price-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      margin-top: -14px;
+    }
+    .upsell-btn-yes {
+      display: block;
+      width: 100%;
+      padding: 15px 20px;
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(42,157,143,.35);
+    }
+    .upsell-btn-yes:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(42,157,143,.4);
+    }
+    .upsell-btn-no {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: none;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .upsell-btn-no:hover { color: var(--body); }
+    @media (max-width: 480px) {
+      #upsell-card { padding: 28px 20px 22px; }
+      .upsell-headline { font-size: 18px; }
     }
   </style>
   <script>
@@ -1013,9 +1156,9 @@
             <p class="price-main"><sup>R$</sup>19<sup>,90</sup></p>
             <p class="price-installments">Pagamento único</p>
           </div>
-          <a href="https://pay.wiapy.com/69ec58796c8e0a098256f485" class="btn btn-primary btn-full" style="background: var(--muted);" target="_blank">
+          <button id="btn-basico-trigger" class="btn btn-primary btn-full" style="background: var(--muted); cursor:pointer; border:none; font-family:'Poppins',sans-serif; font-size:inherit;">
             Quero o kit básico
-          </a>
+          </button>
           <ul class="pricing-items" style="text-align:left; margin-top:20px;">
             <li><i data-lucide="check-circle-2"></i> +80 recursos terapêuticos lúdicos</li>
             <li><i data-lucide="check-circle-2"></i> Organizados por demanda clínica</li>
@@ -1218,9 +1361,85 @@
     </p>
   </footer>
 
+  <!-- ===== POPUP UPSELL ===== -->
+  <div id="upsell-overlay" role="dialog" aria-modal="true" aria-labelledby="upsell-title">
+    <div id="upsell-card">
+      <button id="upsell-close" aria-label="Fechar">&#x2715;</button>
+      <span class="upsell-tag">Oferta especial</span>
+      <h2 class="upsell-headline" id="upsell-title">Espera! Temos uma oferta exclusiva pra você</h2>
+      <p class="upsell-body">Aproveite e leve o <strong>Kit Completo</strong> com os 5 bônus exclusivos por um preço especial. São mais de R$97 em materiais extras por muito menos do que você imagina.</p>
+      <div class="upsell-price-block">
+        <span class="upsell-price-old" id="upsell-old-price"></span>
+        <span class="upsell-price-new" id="upsell-new-price"></span>
+      </div>
+      <p class="upsell-price-label">Pagamento único. Acesso imediato.</p>
+      <a id="upsell-btn-yes" class="upsell-btn-yes" target="_blank">
+        Quero o kit completo com desconto
+      </a>
+      <button id="upsell-btn-no" class="upsell-btn-no">
+        Não, quero apenas o kit básico
+      </button>
+    </div>
+  </div>
+
   <script>
     // Inicializar ícones Lucide
     lucide.createIcons();
+
+    // ===== CONFIG DO POPUP UPSELL =====
+    var UPSELL = {
+      checkoutCompleto: 'https://pay.wiapy.com/Dc-HpAeSV',
+      checkoutBasico:   'https://pay.wiapy.com/69ec58796c8e0a098256f485',
+      precoOriginal:    'R$37,90',
+      precoDesconto:    'R$29,90'
+    };
+
+    // ===== POPUP UPSELL =====
+    (function() {
+      var overlay  = document.getElementById('upsell-overlay');
+      var btnYes   = document.getElementById('upsell-btn-yes');
+      var btnNo    = document.getElementById('upsell-btn-no');
+      var btnClose = document.getElementById('upsell-close');
+      var trigger  = document.getElementById('btn-basico-trigger');
+
+      // Preenche preços dinamicamente
+      document.getElementById('upsell-old-price').textContent = UPSELL.precoOriginal;
+      var newEl = document.getElementById('upsell-new-price');
+      var parts = UPSELL.precoDesconto.replace('R$','').split(',');
+      newEl.innerHTML = '<sup>R$</sup>' + parts[0] + (parts[1] ? '<sup>,' + parts[1] + '</sup>' : '');
+
+      btnYes.href = UPSELL.checkoutCompleto;
+
+      function openPopup(e) {
+        e.preventDefault();
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closePopup() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      function goBasico() {
+        closePopup();
+        window.open(UPSELL.checkoutBasico, '_blank');
+      }
+
+      if (trigger) trigger.addEventListener('click', openPopup);
+      btnClose.addEventListener('click', closePopup);
+      btnNo.addEventListener('click', goBasico);
+
+      // Fechar clicando fora do card
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closePopup();
+      });
+
+      // Fechar com ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closePopup();
+      });
+    })();
 
     // ===== FAQ Accordion =====
     document.querySelectorAll('.faq-question').forEach(btn => {
