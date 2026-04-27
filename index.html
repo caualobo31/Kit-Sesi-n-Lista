@@ -1141,7 +1141,7 @@
   <section id="pricing">
     <div class="container">
       <div class="pricing-header">
-        <span class="tag tag-red" style="margin-bottom:12px; display:inline-block;">Oferta de Lançamento</span>
+        <span class="tag" id="countdown-tag" style="margin-bottom:12px; display:inline-block; background:#FDCB6E; color:#7A5700; letter-spacing:.08em;">OFERTA VÁLIDA ATÉ: <span id="countdown-timer">00:00:00</span></span>
         <h2 class="section-headline" style="margin-bottom:8px;">Escolha seu kit</h2>
         <p class="section-sub" style="margin-bottom:36px;">Os dois kits dão acesso imediato. A diferença está em o quanto você quer resolver de uma vez.</p>
       </div>
@@ -1439,6 +1439,28 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closePopup();
       });
+    })();
+
+    // ===== Countdown até fim do dia =====
+    (function() {
+      var el = document.getElementById('countdown-timer');
+      if (!el) return;
+      function tick() {
+        var now = new Date();
+        var midnight = new Date(now);
+        midnight.setHours(23, 59, 59, 999);
+        var diff = midnight - now;
+        if (diff < 0) diff = 0;
+        var h = Math.floor(diff / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        el.textContent =
+          String(h).padStart(2,'0') + ':' +
+          String(m).padStart(2,'0') + ':' +
+          String(s).padStart(2,'0');
+      }
+      tick();
+      setInterval(tick, 1000);
     })();
 
     // ===== FAQ Accordion =====
