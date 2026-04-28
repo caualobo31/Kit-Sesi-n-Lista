@@ -1571,6 +1571,22 @@
       precoDesconto:    'R$29,90'
     };
 
+    // ===== UTM PASSTHROUGH =====
+    // Repassa UTMs da URL de entrada para qualquer link de checkout gerado via JS
+    function addUtmsToUrl(url) {
+      try {
+        var src = new URLSearchParams(window.location.search);
+        var dest = new URL(url);
+        ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','src','sck','xcod'].forEach(function(k) {
+          var v = src.get(k);
+          // fallback: tenta localStorage (onde Utmify persiste entre páginas)
+          if (!v) { try { v = localStorage.getItem('utmify_' + k); } catch(e) {} }
+          if (v && !dest.searchParams.has(k)) dest.searchParams.set(k, v);
+        });
+        return dest.toString();
+      } catch(e) { return url; }
+    }
+
     // ===== POPUP UPSELL =====
     (function() {
       var overlay  = document.getElementById('upsell-overlay');
@@ -1585,7 +1601,11 @@
       var parts = UPSELL.precoDesconto.replace('R$','').split(',');
       newEl.innerHTML = '<sup>R$</sup>' + parts[0] + (parts[1] ? '<sup>,' + parts[1] + '</sup>' : '');
 
-      btnYes.href = UPSELL.checkoutCompleto;
+      // href com UTMs já embutidos no momento do clique
+      btnYes.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open(addUtmsToUrl(UPSELL.checkoutCompleto), '_blank');
+      });
 
       function openPopup(e) {
         e.preventDefault();
@@ -1600,7 +1620,7 @@
 
       function goBasico() {
         closePopup();
-        window.open(UPSELL.checkoutBasico, '_blank');
+        window.open(addUtmsToUrl(UPSELL.checkoutBasico), '_blank');
       }
 
       if (trigger) trigger.addEventListener('click', openPopup);
