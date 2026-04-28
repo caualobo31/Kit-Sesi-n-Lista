@@ -734,6 +734,94 @@
       .hero-bullets { flex-direction: column; align-items: flex-start; padding: 0 8px; }
     }
 
+    /* ===== DEPOIMENTOS ===== */
+    #testimonials { padding: 80px 0; background: var(--white); }
+    .t-carousel-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .t-track-wrapper { flex: 1; overflow: hidden; border-radius: 14px; }
+    .t-track { display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+    .t-slide { min-width: 100%; }
+    .testimonial-card {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 28px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border: 1px solid rgba(42,157,143,.12);
+    }
+    .testimonial-stars { display: flex; gap: 4px; align-items: center; }
+    .testimonial-rating-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-left: 6px;
+    }
+    .testimonial-text {
+      font-size: 15px;
+      color: var(--body);
+      line-height: 1.7;
+      flex: 1;
+      font-style: italic;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 10px; }
+    .testimonial-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--teal-light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px; font-weight: 700;
+      color: var(--teal-dark);
+      overflow: hidden;
+      border: 2px solid rgba(42,157,143,.2);
+    }
+    .testimonial-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .testimonial-name { font-size: 13px; font-weight: 700; color: var(--dark); }
+    .testimonial-role { font-size: 11px; color: var(--muted); }
+    .t-arrow {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--teal);
+      background: #fff;
+      color: var(--teal);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .t-arrow:hover { background: var(--teal); color: #fff; }
+    .t-dots {
+      display: flex; justify-content: center; gap: 8px;
+      margin-bottom: 48px;
+    }
+    .t-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #d0d8df;
+      border: none; cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .t-dot.active { background: var(--teal); transform: scale(1.35); }
+    @media (max-width: 480px) {
+      .t-arrow { display: none; }
+      .testimonial-card { padding: 22px 18px; }
+    }
+
     /* ===== POPUP UPSELL ===== */
     #upsell-overlay {
       display: none;
@@ -892,7 +980,7 @@
 
   <!-- ===== SEÇÃO 1: FAIXA DE URGÊNCIA ===== -->
   <div id="urgency-bar">
-    Acesso imediato. Use já na sua próxima sessão.
+    Esta página sairá do ar em: <span id="urgency-countdown" style="font-variant-numeric:tabular-nums; letter-spacing:.04em;">00:00:00</span>
   </div>
 
   <!-- ===== SEÇÃO 2: HERO ===== -->
@@ -1137,7 +1225,82 @@
     </div>
   </section>
 
-  <!-- ===== SEÇÃO 8: PLANOS DE PREÇO ===== -->
+  <!-- ===== SEÇÃO 8: DEPOIMENTOS ===== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-label"><span class="tag tag-teal">O que estão dizendo</span></div>
+      <h2 class="section-headline">Psicólogas que já usam o kit</h2>
+      <p class="section-sub">Resultados reais de quem aplicou os recursos nas sessões.</p>
+
+      <div class="t-carousel-wrap">
+        <button class="t-arrow t-prev" aria-label="Anterior">&#8592;</button>
+        <div class="t-track-wrapper">
+          <div class="t-track">
+
+            <div class="t-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars" data-rating="4.7"><span class="testimonial-rating-label">4.7</span></div>
+                <p class="testimonial-text">"Comecei a atender infantil há 3 meses e estava perdida. Com o kit eu entrei na sessão com um plano de atividades pronto. A criança engajou rápido e a mãe me perguntou o que eu tinha feito de diferente."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">
+                    <!-- FOTO DEPOIMENTO 1: substitua o 'A' por <img src="imagens/depoimento1.webp" alt="Ana Paula R."> -->
+                    A
+                  </div>
+                  <div>
+                    <p class="testimonial-name">Ana Paula R.</p>
+                    <p class="testimonial-role">Psicóloga clínica, SP</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="t-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars" data-rating="4.9"><span class="testimonial-rating-label">4.9</span></div>
+                <p class="testimonial-text">"Já gastei mais de R$300 em jogos físicos que ficam na gaveta. Esse kit digital cobre muito mais situações por um décimo do preço. Uso toda semana, especialmente as fichas de TDAH e ansiedade."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">
+                    <!-- FOTO DEPOIMENTO 2: substitua o 'C' por <img src="imagens/depoimento2.webp" alt="Camila F."> -->
+                    C
+                  </div>
+                  <div>
+                    <p class="testimonial-name">Camila F.</p>
+                    <p class="testimonial-role">Psicóloga infantil, MG</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="t-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars" data-rating="4.5"><span class="testimonial-rating-label">4.5</span></div>
+                <p class="testimonial-text">"O bônus de devolutiva para pais foi o que mais me ajudou. Eu tremia na hora de dar feedback. Agora tenho um roteiro claro e os pais saem da conversa com confiança no processo."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">
+                    <!-- FOTO DEPOIMENTO 3: substitua o 'J' por <img src="imagens/depoimento3.webp" alt="Juliana M."> -->
+                    J
+                  </div>
+                  <div>
+                    <p class="testimonial-name">Juliana M.</p>
+                    <p class="testimonial-role">Psicóloga, RS</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <button class="t-arrow t-next" aria-label="Próximo">&#8594;</button>
+      </div>
+      <div class="t-dots">
+        <button class="t-dot active"></button>
+        <button class="t-dot"></button>
+        <button class="t-dot"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 9: PLANOS DE PREÇO ===== -->
   <section id="pricing">
     <div class="container">
       <div class="pricing-header">
@@ -1441,23 +1604,77 @@
       });
     })();
 
+    // ===== Estrelas de avaliação (parciais) =====
+    (function() {
+      var STAR_PATH = 'M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z';
+      function starSVG(fill, id) {
+        var inner = fill === 1
+          ? '<path d="' + STAR_PATH + '" fill="#FDCB6E" stroke="#FDCB6E" stroke-width="1.5"/>'
+          : fill === 0
+          ? '<path d="' + STAR_PATH + '" fill="none" stroke="#FDCB6E" stroke-width="1.5"/>'
+          : '<defs><linearGradient id="' + id + '"><stop offset="' + Math.round(fill*100) + '%" stop-color="#FDCB6E"/><stop offset="' + Math.round(fill*100) + '%" stop-color="transparent"/></linearGradient></defs><path d="' + STAR_PATH + '" fill="url(#' + id + ')" stroke="#FDCB6E" stroke-width="1.5"/>';
+        return '<svg width="17" height="17" viewBox="0 0 24 24" style="flex-shrink:0">' + inner + '</svg>';
+      }
+      document.querySelectorAll('.testimonial-stars[data-rating]').forEach(function(el, idx) {
+        var rating = parseFloat(el.getAttribute('data-rating'));
+        var label = el.querySelector('.testimonial-rating-label');
+        var html = '';
+        for (var i = 1; i <= 5; i++) {
+          var fill = Math.min(1, Math.max(0, rating - (i - 1)));
+          fill = fill >= 1 ? 1 : fill <= 0 ? 0 : fill;
+          html += starSVG(fill, 'sg-' + idx + '-' + i);
+        }
+        el.insertAdjacentHTML('afterbegin', html);
+        if (label) el.appendChild(label);
+      });
+    })();
+
+    // ===== Carrossel de Depoimentos =====
+    (function() {
+      var track = document.querySelector('.t-track');
+      var dots  = document.querySelectorAll('.t-dot');
+      var prev  = document.querySelector('.t-prev');
+      var next  = document.querySelector('.t-next');
+      if (!track) return;
+      var total = document.querySelectorAll('.t-slide').length;
+      var cur = 0, timer, startX = 0;
+
+      function goTo(idx) {
+        cur = (idx + total) % total;
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
+      }
+      function resetAuto() { clearInterval(timer); timer = setInterval(function() { goTo(cur + 1); }, 5000); }
+
+      prev.addEventListener('click', function() { goTo(cur - 1); resetAuto(); });
+      next.addEventListener('click', function() { goTo(cur + 1); resetAuto(); });
+      dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); resetAuto(); }); });
+
+      track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchend', function(e) {
+        var diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) { goTo(cur + (diff > 0 ? 1 : -1)); resetAuto(); }
+      });
+
+      resetAuto();
+    })();
+
     // ===== Countdown até fim do dia =====
     (function() {
-      var el = document.getElementById('countdown-timer');
-      if (!el) return;
+      var targets = [
+        document.getElementById('countdown-timer'),
+        document.getElementById('urgency-countdown')
+      ];
       function tick() {
         var now = new Date();
         var midnight = new Date(now);
         midnight.setHours(23, 59, 59, 999);
-        var diff = midnight - now;
-        if (diff < 0) diff = 0;
+        var diff = Math.max(0, midnight - now);
         var h = Math.floor(diff / 3600000);
         var m = Math.floor((diff % 3600000) / 60000);
         var s = Math.floor((diff % 60000) / 1000);
-        el.textContent =
-          String(h).padStart(2,'0') + ':' +
-          String(m).padStart(2,'0') + ':' +
-          String(s).padStart(2,'0');
+        var str = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+        targets.forEach(function(el) { if (el) el.textContent = str; });
       }
       tick();
       setInterval(tick, 1000);
