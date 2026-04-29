@@ -482,8 +482,9 @@
       border: 2px solid rgba(0,0,0,0.08);
     }
     .pricing-card.featured {
-      border-color: var(--teal);
-      box-shadow: 0 8px 32px rgba(42,157,143,0.18);
+      background: linear-gradient(155deg, var(--teal) 0%, var(--teal-dark) 100%);
+      border-color: transparent;
+      box-shadow: 0 16px 48px rgba(42,157,143,0.35);
       transform: scale(1.03);
     }
     .pricing-badge {
@@ -491,8 +492,8 @@
       top: -13px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--teal);
-      color: #fff;
+      background: var(--gold);
+      color: #7A5700;
       font-size: 11px;
       font-weight: 800;
       padding: 4px 16px;
@@ -500,6 +501,27 @@
       white-space: nowrap;
       letter-spacing: 0.8px;
       text-transform: uppercase;
+    }
+
+    /* Elementos internos do card featured */
+    .pricing-card.featured .plan-name { color: rgba(255,255,255,0.7); }
+    .pricing-card.featured .price-old { color: #ffb3b8; }
+    .pricing-card.featured .price-main { color: #fff; }
+    .pricing-card.featured .price-savings { color: #7fffd4; }
+    .pricing-card.featured .pricing-items li { color: rgba(255,255,255,0.92); }
+    .pricing-card.featured .pricing-items li i { color: #7fffd4; }
+    .pricing-card.featured .pricing-items li.bonus-item { color: var(--gold); font-weight: 600; }
+    .pricing-card.featured .pricing-items li.bonus-item i { color: var(--gold); }
+    .pricing-card.featured .bonus-tag { color: #ffb3b8; opacity: 1; }
+    .pricing-card.featured .btn-primary {
+      background: #fff;
+      color: var(--teal-dark);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .pricing-card.featured .btn-primary:hover {
+      background: var(--gold);
+      color: #7A5700;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
     .pricing-card .plan-name {
       font-size: 13px;
@@ -817,6 +839,17 @@
       transition: background .2s, transform .2s;
     }
     .t-dot.active { background: var(--teal); transform: scale(1.35); }
+    @keyframes pulse-cta {
+      0%   { box-shadow: 0 4px 16px rgba(0,0,0,0.15), 0 0 0 0 rgba(255,255,255,0.55); }
+      70%  { box-shadow: 0 4px 16px rgba(0,0,0,0.15), 0 0 0 12px rgba(255,255,255,0); }
+      100% { box-shadow: 0 4px 16px rgba(0,0,0,0.15), 0 0 0 0 rgba(255,255,255,0); }
+    }
+    .pricing-card.featured .btn-primary {
+      animation: pulse-cta 2s ease-out infinite;
+    }
+    .pricing-card.featured .btn-primary:hover {
+      animation: none;
+    }
     @keyframes bounce-arrow {
       0%, 100% { transform: translateY(0); }
       50%       { transform: translateY(6px); }
@@ -1349,11 +1382,11 @@
           <p class="plan-name">Kit Completo</p>
           <img src="imagens/mockuptudo.webp" alt="Kit Completo" class="pricing-mock" />
           <div class="price-block">
-            <p style="font-size:13px; font-weight:600; color:var(--teal-dark); margin-bottom:8px; line-height:1.3;">O kit completo para transformar suas sessões</p>
+            <p style="font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); margin-bottom:8px; line-height:1.3;">O kit completo para transformar suas sessões</p>
             <p class="price-old">De R$114,90</p>
             <p class="price-main"><sup>R$</sup>37<sup>,90</sup></p>
-            <p style="font-size:14px; font-weight:400; color:var(--muted); margin-top:4px;">Ou 6x de R$ 7,45</p>
-            <p style="font-size:11px; color:var(--muted); margin-top:3px; margin-bottom:6px;">pagamento único &bull; acesso imediato</p>
+            <p style="font-size:14px; font-weight:400; color:rgba(255,255,255,0.65); margin-top:4px;">Ou 6x de R$ 7,45</p>
+            <p style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px; margin-bottom:6px;">pagamento único &bull; acesso imediato</p>
             <p class="price-savings">Você economiza R$77,00</p>
           </div>
           <a href="https://pay.wiapy.com/69ec57d26c8e0a098256eb7d" target="_blank" class="btn btn-primary btn-full">
