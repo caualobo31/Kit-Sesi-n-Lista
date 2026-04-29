@@ -7,8 +7,9 @@
   <meta name="description" content="Kit digital com +80 recursos terapêuticos lúdicos para psicólogas infantis. Organizados por demanda. Imprima e aplique. Acesso imediato." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="imagens/mockuptudo.webp" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1034,7 +1035,7 @@
       </p>
 
       <!-- MOCKUP PLACEHOLDER -->
-      <img src="imagens/mockuptudo.webp" alt="Kit Consultório Lúdico" class="hero-mockup" />
+      <img src="imagens/mockuptudo.webp" alt="Kit Consultório Lúdico" class="hero-mockup" fetchpriority="high" />
 
       <div class="hero-bullets">
         <div class="hero-bullet"><i data-lucide="zap"></i> Acesso imediato após a compra</div>
@@ -1073,25 +1074,25 @@
     <div class="carousel-wrapper">
       <div class="carousel-track" id="carousel-track">
         <!-- Slides originais: atv psi primeiro, depois demais recursos -->
-        <div class="carousel-slide"><img src="imagens/atv psi 1.webp" alt="Atividade psi 1" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/atv psi 2.webp" alt="Atividade psi 2" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/atv psi 3.webp" alt="Atividade psi 3" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/atv psi 4.webp" alt="Atividade psi 4" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/atv psi 5.webp" alt="Atividade psi 5" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/recurso 2.webp" alt="Recurso 2" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/recurso 3.webp" alt="Recurso 3" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/foto3.webp" alt="Recurso 4" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/foto4.webp" alt="Recurso 5" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
+        <div class="carousel-slide"><img src="imagens/atv psi 1.webp" alt="Atividade psi 1" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/atv psi 2.webp" alt="Atividade psi 2" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/atv psi 3.webp" alt="Atividade psi 3" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/atv psi 4.webp" alt="Atividade psi 4" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/atv psi 5.webp" alt="Atividade psi 5" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/recurso 2.webp" alt="Recurso 2" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/recurso 3.webp" alt="Recurso 3" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/foto3.webp" alt="Recurso 4" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/foto4.webp" alt="Recurso 5" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
         <!-- Duplicados para loop infinito -->
-        <div class="carousel-slide"><img src="imagens/atv psi 1.webp" alt="Atividade psi 1" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/atv psi 2.webp" alt="Atividade psi 2" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/atv psi 3.webp" alt="Atividade psi 3" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/atv psi 4.webp" alt="Atividade psi 4" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/atv psi 5.webp" alt="Atividade psi 5" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/recurso 2.webp" alt="Recurso 2" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/recurso 3.webp" alt="Recurso 3" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/foto3.webp" alt="Recurso 4" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-        <div class="carousel-slide"><img src="imagens/foto4.webp" alt="Recurso 5" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
+        <div class="carousel-slide"><img src="imagens/atv psi 1.webp" alt="Atividade psi 1" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/atv psi 2.webp" alt="Atividade psi 2" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/atv psi 3.webp" alt="Atividade psi 3" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/atv psi 4.webp" alt="Atividade psi 4" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/atv psi 5.webp" alt="Atividade psi 5" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/recurso 2.webp" alt="Recurso 2" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/recurso 3.webp" alt="Recurso 3" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/foto3.webp" alt="Recurso 4" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
+        <div class="carousel-slide"><img src="imagens/foto4.webp" alt="Recurso 5" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" loading="lazy"></div>
       </div>
     </div>
 
@@ -1189,7 +1190,7 @@
 
       <div class="value-stack-inner">
         <!-- MOCKUP PLACEHOLDER -->
-        <img src="imagens/mockupsembonus.webp" alt="Kit Consultório Lúdico" class="value-mockup" style="object-fit:contain;" />
+        <img src="imagens/mockupsembonus.webp" alt="Kit Consultório Lúdico" class="value-mockup" style="object-fit:contain;" loading="lazy" />
 
         <div class="value-content">
           <h2>Kit Consultório Lúdico<br /><span>+80 recursos terapêuticos</span></h2>
@@ -1278,7 +1279,7 @@
                 <p class="testimonial-text">"Comecei a atender infantil há 3 meses e estava perdida. Com o kit eu entrei na sessão com um plano de atividades pronto. A criança engajou rápido e a mãe me perguntou o que eu tinha feito de diferente."</p>
                 <div class="testimonial-author">
                   <div class="testimonial-avatar">
-                    <img src="imagens/avatar sp.webp" alt="Ana Paula R.">
+                    <img src="imagens/avatar sp.webp" alt="Ana Paula R." loading="lazy">
                   </div>
                   <div>
                     <p class="testimonial-name">Ana Paula R.</p>
@@ -1294,7 +1295,7 @@
                 <p class="testimonial-text">"Já gastei mais de R$300 em jogos físicos que ficam na gaveta. Esse kit digital cobre muito mais situações por um décimo do preço. Uso toda semana, especialmente as fichas de TDAH e ansiedade."</p>
                 <div class="testimonial-author">
                   <div class="testimonial-avatar">
-                    <img src="imagens/mariana.webp" alt="Camila F.">
+                    <img src="imagens/mariana.webp" alt="Camila F." loading="lazy">
                   </div>
                   <div>
                     <p class="testimonial-name">Camila F.</p>
@@ -1310,7 +1311,7 @@
                 <p class="testimonial-text">"O bônus de devolutiva para pais foi o que mais me ajudou. Eu tremia na hora de dar feedback. Agora tenho um roteiro claro e os pais saem da conversa com confiança no processo."</p>
                 <div class="testimonial-author">
                   <div class="testimonial-avatar">
-                    <img src="imagens/woman-7175038_640.webp" alt="Juliana M.">
+                    <img src="imagens/woman-7175038_640.webp" alt="Juliana M." loading="lazy">
                   </div>
                   <div>
                     <p class="testimonial-name">Juliana M.</p>
@@ -1356,7 +1357,7 @@
         <!-- KIT BÁSICO -->
         <div class="pricing-card" style="text-align:center;">
           <p class="plan-name">Kit Básico</p>
-          <img src="imagens/mockupsembonus.webp" alt="Kit Básico" class="pricing-mock" />
+          <img src="imagens/mockupsembonus.webp" alt="Kit Básico" class="pricing-mock" loading="lazy" />
           <div class="price-block">
             <p class="price-old">De R$47,90</p>
             <p class="price-main"><sup>R$</sup>19<sup>,90</sup></p>
@@ -1380,7 +1381,7 @@
         <div class="pricing-card featured" style="text-align:center;">
           <div class="pricing-badge">MAIS VENDIDO</div>
           <p class="plan-name">Kit Completo</p>
-          <img src="imagens/mockuptudo.webp" alt="Kit Completo" class="pricing-mock" />
+          <img src="imagens/mockuptudo.webp" alt="Kit Completo" class="pricing-mock" loading="lazy" />
           <div class="price-block">
             <p style="font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); margin-bottom:8px; line-height:1.3;">O kit completo para transformar suas sessões</p>
             <p class="price-old">De R$114,90</p>
@@ -1590,6 +1591,7 @@
     </div>
   </div>
 
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     // Inicializar ícones Lucide
     lucide.createIcons();
