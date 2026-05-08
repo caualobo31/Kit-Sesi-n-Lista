@@ -1592,14 +1592,9 @@
       var parts = UPSELL.precoDesconto.replace('R$','').split(',');
       newEl.innerHTML = '<sup>R$</sup>' + parts[0] + (parts[1] ? '<sup>,' + parts[1] + '</sup>' : '');
 
-      // href com UTMs já embutidos no momento do clique
-      btnYes.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.open(addUtmsToUrl(UPSELL.checkoutCompleto), '_blank');
-      });
-
       function openPopup(e) {
         e.preventDefault();
+        btnYes.href = addUtmsToUrl(UPSELL.checkoutCompleto);
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
