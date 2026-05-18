@@ -778,31 +778,61 @@
     }
     .t-track-wrapper { flex: 1; overflow: hidden; border-radius: 14px; }
     .t-track { display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1); }
-    .t-slide { min-width: 100%; }
-    .t-img {
-      width: 100%;
-      max-height: 480px;
-      object-fit: contain;
-      border-radius: 12px;
-      display: block;
-    }
-    .t-img-placeholder {
-      width: 100%;
-      height: 360px;
-      border: 2px dashed var(--teal);
-      border-radius: 12px;
-      background: var(--bg-alt);
+    .t-slide { min-width: 100%; padding: 8px 4px; }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 28px rgba(0,0,0,0.09);
+      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--muted);
-      text-align: center;
-      gap: 8px;
+      gap: 20px;
+      border: 1px solid rgba(0,0,0,0.06);
     }
-    .t-img-placeholder span { font-size: 11px; font-weight: 400; font-family: monospace; }
+    .testimonial-stars {
+      color: var(--teal);
+      font-size: 22px;
+      letter-spacing: 4px;
+    }
+    .testimonial-text {
+      font-size: 15px;
+      color: var(--body);
+      line-height: 1.75;
+      font-style: italic;
+      max-width: 500px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .testimonial-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      text-align: left;
+    }
+    .testimonial-country {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: left;
+      margin-top: 3px;
+    }
     .t-arrow {
       flex-shrink: 0;
       width: 40px; height: 40px;
@@ -1266,19 +1296,45 @@
           <div class="t-track">
 
             <div class="t-slide">
-              <img src="imagens/dep1.png" alt="Depoimento 1" class="t-img" loading="lazy">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Llevaba meses improvisando en cada sesión. Compré el kit el viernes y el lunes ya estaba aplicando con un peque que llegó super cerrado. Funcionó increíble. Hoy entro a consulta sabiendo qué hacer."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">C</div>
+                  <div>
+                    <p class="testimonial-name">Camila R.</p>
+                    <p class="testimonial-country">Bogotá, Colombia</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="t-slide">
-              <img src="imagens/dep2.png" alt="Depoimento 2" class="t-img" loading="lazy">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Yo gastaba horas buscando actividades en Pinterest antes de cada sesión. Con este kit ahora abro el PDF, escojo según la demanda y listo. Me devolvió mis tardes y mis sesiones son mucho más profesionales."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">M</div>
+                  <div>
+                    <p class="testimonial-name">María José H.</p>
+                    <p class="testimonial-country">Ciudad de México, México</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="t-slide">
-              <img src="imagens/dep3.png" alt="Depoimento 3" class="t-img" loading="lazy">
-            </div>
-
-            <div class="t-slide">
-              <img src="imagens/dep4.png" alt="Depoimento 4" class="t-img" loading="lazy">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Tenía pánico a las devoluciones con los papás. El guion de devolución me salvó literalmente. Hice mi primera devolución sin trabarme y los papás salieron felices. Vale cada peso."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">V</div>
+                  <div>
+                    <p class="testimonial-name">Valentina R.</p>
+                    <p class="testimonial-country">Santiago, Chile</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -1287,7 +1343,6 @@
       </div>
       <div class="t-dots">
         <button class="t-dot active"></button>
-        <button class="t-dot"></button>
         <button class="t-dot"></button>
         <button class="t-dot"></button>
       </div>
