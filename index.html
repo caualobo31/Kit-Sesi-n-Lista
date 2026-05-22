@@ -1650,9 +1650,7 @@
 
       function openPopup(e) {
         e.preventDefault();
-        btnYes.href = addUtmsToUrl(UPSELL.checkoutCompleto);
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        window.open(addUtmsToUrl(UPSELL.checkoutBasico), '_blank');
       }
 
       function closePopup() {
