@@ -1407,7 +1407,7 @@
             <p style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px; margin-bottom:6px;">Pago único &bull; acceso inmediato</p>
             <p class="price-savings">Ahorras $34 USD</p>
           </div>
-          <a href="https://pay.hotmart.com/V105886856J" target="_blank" class="btn btn-primary btn-full">
+          <a href="https://pay.hotmart.com/V105886856J" id="btn-completo-direct" target="_blank" class="btn btn-primary btn-full">
             Quiero el kit completo
           </a>
           <ul class="pricing-items" style="text-align:left; margin-top:20px;">
@@ -1675,6 +1675,20 @@
 
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closePopup();
+      });
+    })();
+
+    // ===== UTM passthrough em todos os links de checkout =====
+    (function() {
+      var links = [
+        document.getElementById('btn-completo-direct')
+      ];
+      links.forEach(function(el) {
+        if (!el) return;
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.open(addUtmsToUrl(el.href), '_blank');
+        });
       });
     })();
 
