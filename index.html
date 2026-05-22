@@ -1805,19 +1805,38 @@
         if (eCS) eCS.textContent = 'Ahorras ' + fmt(USD.savings, rate, cfg);
       }
 
-      fetch('https://ipapi.co/json/')
+      var COUNTRY_CURRENCY = {
+        'MX':'MXN','CO':'COP','AR':'ARS','CL':'CLP','PE':'PEN','BR':'BRL',
+        'UY':'UYU','PY':'PYG','BO':'BOB','GT':'GTQ','HN':'HNL','CR':'CRC',
+        'DO':'DOP','NI':'NIO','PA':'PAB','ES':'EUR','PT':'EUR','VE':'VES'
+      };
+
+      function fetchRatesAndApply(currency) {
+        if (!currency || currency === 'USD' || !CURRENCIES[currency]) return;
+        fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json')
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            var rate = data.usd && data.usd[currency.toLowerCase()];
+            if (rate) apply(currency, rate);
+          })
+          .catch(function() {});
+      }
+
+      // Primário: ipinfo.io (50k/mês grátis, retorna country code)
+      fetch('https://ipinfo.io/json')
         .then(function(r) { return r.json(); })
         .then(function(geo) {
-          var cur = geo.currency;
-          if (!cur || cur === 'USD' || !CURRENCIES[cur]) return;
-          return fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json')
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-              var rate = data.usd && data.usd[cur.toLowerCase()];
-              if (rate) apply(cur, rate);
-            });
+          var cur = COUNTRY_CURRENCY[geo.country];
+          if (cur) { fetchRatesAndApply(cur); return; }
+          throw new Error('currency not mapped');
         })
-        .catch(function() {});
+        .catch(function() {
+          // Fallback: ipapi.co (retorna currency direto, 1000/dia)
+          fetch('https://ipapi.co/json/')
+            .then(function(r) { return r.json(); })
+            .then(function(geo) { fetchRatesAndApply(geo.currency); })
+            .catch(function() {});
+        });
     })();
 
     // ===== FAQ Accordion =====
