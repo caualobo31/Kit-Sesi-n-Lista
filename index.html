@@ -1375,9 +1375,9 @@
           <p class="plan-name">Kit Básico</p>
           <img src="imagens/mockupp.png" alt="Kit Básico" class="pricing-mock" loading="lazy" width="840" height="560" />
           <div class="price-block">
-            <p class="price-old">De $19 USD</p>
-            <p class="price-main"><sup>$</sup>7</p>
-            <p class="price-installments">Pago único</p>
+            <p class="price-old" id="price-basico-old">De $19 USD</p>
+            <p class="price-main" id="price-basico-main"><sup>$</sup>7</p>
+            <p class="price-installments" id="price-basico-note">Pago único</p>
           </div>
           <button id="btn-basico-trigger" class="btn btn-primary btn-full" style="background: var(--muted); cursor:pointer; border:none; font-family:'Poppins',sans-serif; font-size:inherit;">
             Quiero el kit básico
@@ -1401,11 +1401,11 @@
           <img src="imagens/mockupcompleto.png" alt="Kit Completo" class="pricing-mock" loading="lazy" width="840" height="560" />
           <div class="price-block">
             <p style="font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); margin-bottom:8px; line-height:1.3;">El kit completo para transformar tus sesiones</p>
-            <p class="price-old">De $48 USD</p>
-            <p class="price-main"><sup>$</sup>14</p>
+            <p class="price-old" id="price-completo-old">De $48 USD</p>
+            <p class="price-main" id="price-completo-main"><sup>$</sup>14</p>
             <p style="font-size:14px; font-weight:400; color:rgba(255,255,255,0.65); margin-top:4px;">O en cuotas según tu país</p>
             <p style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px; margin-bottom:6px;">Pago único &bull; acceso inmediato</p>
-            <p class="price-savings">Ahorras $34 USD</p>
+            <p class="price-savings" id="price-completo-savings">Ahorras $34 USD</p>
           </div>
           <a href="https://pay.hotmart.com/V105886856J" id="btn-completo-direct" target="_blank" class="btn btn-primary btn-full">
             Quiero el kit completo
@@ -1739,6 +1739,85 @@
       }
       tick();
       setInterval(tick, 1000);
+    })();
+
+    // ===== Conversão automática de moeda por país =====
+    (function() {
+      var USD = { basico: 7, basicoOld: 19, completo: 14, completoOld: 48, savings: 34 };
+
+      var CURRENCIES = {
+        MXN: { symbol: 'MX$', dec: 0, tsep: ',',  dsep: '.' },
+        COP: { symbol: '$',   dec: 0, tsep: '.',  dsep: ',' },
+        ARS: { symbol: '$',   dec: 0, tsep: '.',  dsep: ',' },
+        CLP: { symbol: '$',   dec: 0, tsep: '.',  dsep: ',' },
+        PEN: { symbol: 'S/',  dec: 2, tsep: ',',  dsep: '.' },
+        BRL: { symbol: 'R$',  dec: 2, tsep: '.',  dsep: ',' },
+        UYU: { symbol: '$U',  dec: 0, tsep: '.',  dsep: ',' },
+        PYG: { symbol: '₲',   dec: 0, tsep: '.',  dsep: ',' },
+        BOB: { symbol: 'Bs.', dec: 2, tsep: ',',  dsep: '.' },
+        GTQ: { symbol: 'Q',   dec: 2, tsep: ',',  dsep: '.' },
+        HNL: { symbol: 'L',   dec: 2, tsep: ',',  dsep: '.' },
+        CRC: { symbol: '₡',   dec: 0, tsep: ',',  dsep: '.' },
+        DOP: { symbol: 'RD$', dec: 2, tsep: ',',  dsep: '.' },
+        NIO: { symbol: 'C$',  dec: 2, tsep: ',',  dsep: '.' },
+        PAB: { symbol: 'B/.',  dec: 2, tsep: ',',  dsep: '.' },
+        EUR: { symbol: '€',   dec: 2, tsep: '.',  dsep: ',' },
+      };
+
+      function smartRound(n) {
+        if (n >= 10000) return Math.round(n / 500) * 500;
+        if (n >= 1000)  return Math.round(n / 50)  * 50;
+        if (n >= 100)   return Math.round(n / 5)   * 5;
+        return Math.round(n * 2) / 2;
+      }
+
+      function fmt(usdAmount, rate, cfg) {
+        var val = smartRound(usdAmount * rate);
+        var str = val.toFixed(cfg.dec);
+        var parts = str.split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, cfg.tsep);
+        var num = parts.length > 1 ? parts[0] + cfg.dsep + parts[1] : parts[0];
+        return cfg.symbol + ' ' + num;
+      }
+
+      function fmtMain(usdAmount, rate, cfg) {
+        var val = smartRound(usdAmount * rate);
+        var whole = String(Math.round(val)).replace(/\B(?=(\d{3})+(?!\d))/g, cfg.tsep);
+        return '<sup>' + cfg.symbol + '</sup>' + whole;
+      }
+
+      function apply(currency, rate) {
+        var cfg = CURRENCIES[currency];
+        if (!cfg) return;
+
+        var eBO  = document.getElementById('price-basico-old');
+        var eBM  = document.getElementById('price-basico-main');
+        var eBN  = document.getElementById('price-basico-note');
+        var eCO  = document.getElementById('price-completo-old');
+        var eCM  = document.getElementById('price-completo-main');
+        var eCS  = document.getElementById('price-completo-savings');
+
+        if (eBO) eBO.textContent = 'De ' + fmt(USD.basicoOld, rate, cfg);
+        if (eBM) eBM.innerHTML   = fmtMain(USD.basico, rate, cfg);
+        if (eBN) eBN.textContent = 'Pago único · ' + currency;
+        if (eCO) eCO.textContent = 'De ' + fmt(USD.completoOld, rate, cfg);
+        if (eCM) eCM.innerHTML   = fmtMain(USD.completo, rate, cfg);
+        if (eCS) eCS.textContent = 'Ahorras ' + fmt(USD.savings, rate, cfg);
+      }
+
+      fetch('https://ipapi.co/json/')
+        .then(function(r) { return r.json(); })
+        .then(function(geo) {
+          var cur = geo.currency;
+          if (!cur || cur === 'USD' || !CURRENCIES[cur]) return;
+          return fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+              var rate = data.usd && data.usd[cur.toLowerCase()];
+              if (rate) apply(cur, rate);
+            });
+        })
+        .catch(function() {});
     })();
 
     // ===== FAQ Accordion =====
