@@ -880,18 +880,19 @@
       .testimonial-card { padding: 22px 18px; }
     }
 
-    /* ===== POPUP UPSELL ===== */
-    #upsell-overlay {
+    /* ===== POPUP UPGRADE ===== */
+    #upgrade-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.55);
+      background: rgba(0,0,0,0.6);
       z-index: 9999;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
+      overflow-y: auto;
     }
-    #upsell-overlay.active {
+    #upgrade-overlay.active {
       display: flex;
       animation: overlay-in 0.25s ease forwards;
     }
@@ -899,88 +900,162 @@
       from { opacity: 0; }
       to   { opacity: 1; }
     }
-    #upsell-card {
+    #upgrade-modal {
       background: #fff;
-      border-radius: 16px;
-      padding: 36px 32px 28px;
-      max-width: 460px;
+      border-radius: 20px;
+      padding: 40px 36px 32px;
+      max-width: 500px;
       width: 100%;
-      text-align: center;
       position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-      animation: card-in 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.22);
+      animation: modal-in 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      max-height: 92vh;
+      overflow-y: auto;
     }
-    @keyframes card-in {
+    @keyframes modal-in {
       from { opacity: 0; transform: scale(0.88); }
       to   { opacity: 1; transform: scale(1); }
     }
-    #upsell-close {
+    #upgrade-close {
       position: absolute;
-      top: 12px; right: 16px;
+      top: 14px; right: 18px;
       background: none;
       border: none;
-      font-size: 22px;
+      font-size: 20px;
       color: var(--muted);
       cursor: pointer;
       line-height: 1;
       padding: 4px;
     }
-    #upsell-close:hover { color: var(--dark); }
-    .upsell-tag {
+    #upgrade-close:hover { color: var(--dark); }
+    .upgrade-badge {
       display: inline-block;
-      background: #fff3cd;
-      color: #856404;
+      background: var(--teal-light);
+      color: var(--teal-dark);
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: .06em;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 50px;
       margin-bottom: 14px;
     }
-    .upsell-headline {
+    #upgrade-modal h2 {
       font-size: 22px;
       font-weight: 800;
       color: var(--dark);
       line-height: 1.3;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      text-align: center;
     }
-    .upsell-body {
+    .upgrade-subtitle {
       font-size: 14px;
       color: var(--body);
       line-height: 1.6;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      text-align: center;
     }
-    .upsell-price-block {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 22px;
-    }
-    .upsell-price-old {
+    #upgrade-timer-bar {
+      background: #fff8e6;
+      border: 1.5px solid var(--gold);
+      border-radius: 10px;
+      padding: 8px 16px;
       font-size: 13px;
-      color: var(--red);
-      text-decoration: line-through;
-      font-weight: 500;
-      opacity: 0.8;
+      font-weight: 600;
+      color: #7A5700;
+      text-align: center;
+      margin-bottom: 18px;
     }
-    .upsell-price-new {
-      font-size: 44px;
+    #upgrade-timer-bar span { font-variant-numeric: tabular-nums; font-weight: 800; }
+    .upgrade-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .upgrade-col {
+      border-radius: 14px;
+      padding: 18px 14px;
+    }
+    .upgrade-col-basic {
+      background: var(--bg-alt);
+      border: 1.5px solid rgba(0,0,0,0.08);
+      opacity: 0.72;
+    }
+    .upgrade-col-complete {
+      background: var(--teal-light);
+      border: 2px solid var(--teal);
+      position: relative;
+    }
+    .upgrade-recommended {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--teal);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 50px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .upgrade-col h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .upgrade-col-price {
+      font-size: 20px;
       font-weight: 900;
       color: var(--teal-dark);
+      text-align: center;
+      margin-bottom: 10px;
     }
-    .upsell-price-new sup { font-size: 18px; font-weight: 700; vertical-align: super; }
-    .upsell-price-label {
+    .upgrade-col-price-old {
       font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 20px;
-      margin-top: -14px;
+      color: var(--red);
+      text-decoration: line-through;
+      text-align: center;
+      margin-bottom: 2px;
     }
-    .upsell-btn-yes {
+    .upgrade-col ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .upgrade-col ul li {
+      font-size: 12px;
+      color: var(--body);
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.4;
+    }
+    .upgrade-col ul li::before {
+      content: '✓';
+      color: var(--teal);
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+    .upgrade-col-basic ul li::before { color: var(--muted); }
+    .upgrade-savings-note {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal-dark);
+      background: var(--teal-light);
+      border-radius: 10px;
+      padding: 10px 14px;
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .upgrade-btn-primary {
       display: block;
       width: 100%;
-      padding: 15px 20px;
+      padding: 16px 20px;
       background: var(--teal);
       color: #fff;
       border: none;
@@ -990,16 +1065,17 @@
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
+      text-align: center;
       margin-bottom: 12px;
       transition: background .2s, transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 16px rgba(42,157,143,.35);
+      box-shadow: 0 6px 20px rgba(42,157,143,.35);
     }
-    .upsell-btn-yes:hover {
+    .upgrade-btn-primary:hover {
       background: var(--teal-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(42,157,143,.4);
+      box-shadow: 0 10px 28px rgba(42,157,143,.45);
     }
-    .upsell-btn-no {
+    .upgrade-btn-secondary {
       display: block;
       width: 100%;
       padding: 10px;
@@ -1011,11 +1087,14 @@
       cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 3px;
+      text-align: center;
     }
-    .upsell-btn-no:hover { color: var(--body); }
-    @media (max-width: 480px) {
-      #upsell-card { padding: 28px 20px 22px; }
-      .upsell-headline { font-size: 18px; }
+    .upgrade-btn-secondary:hover { color: var(--body); }
+    @media (max-width: 520px) {
+      #upgrade-modal { padding: 32px 18px 24px; }
+      #upgrade-modal h2 { font-size: 18px; }
+      .upgrade-compare { grid-template-columns: 1fr; }
+      .upgrade-col-complete { order: -1; }
     }
   </style>
   <script>
@@ -1588,23 +1667,57 @@
     </p>
   </footer>
 
-  <!-- ===== POPUP UPSELL ===== -->
-  <div id="upsell-overlay" role="dialog" aria-modal="true" aria-labelledby="upsell-title">
-    <div id="upsell-card">
-      <button id="upsell-close" aria-label="Cerrar">&#x2715;</button>
-      <span class="upsell-tag">Oferta especial</span>
-      <h2 class="upsell-headline" id="upsell-title">¡Espera! Tenemos una oferta exclusiva para ti</h2>
-      <p class="upsell-body">Aprovecha y llévate el <strong>Kit Completo</strong> con los 5 bonos exclusivos a un precio especial. Son más de $34 USD en materiales extras por mucho menos de lo que imaginas.</p>
-      <div class="upsell-price-block">
-        <span class="upsell-price-old" id="upsell-old-price"></span>
-        <span class="upsell-price-new" id="upsell-new-price"></span>
+  <!-- ===== POPUP UPGRADE ===== -->
+  <div id="upgrade-overlay" role="dialog" aria-modal="true" aria-labelledby="upgrade-title">
+    <div id="upgrade-modal">
+      <button id="upgrade-close" aria-label="Cerrar">&#x2715;</button>
+
+      <div style="text-align:center;">
+        <span class="upgrade-badge">⚡ OFERTA ESPECIAL</span>
       </div>
-      <p class="upsell-price-label">Pago único. Acceso inmediato.</p>
-      <a id="upsell-btn-yes" class="upsell-btn-yes" target="_blank">
-        Quiero el kit completo con descuento
+
+      <h2 id="upgrade-title">¡Espera! Antes de continuar...</h2>
+      <p class="upgrade-subtitle">El 92% de las psicólogas que vieron esta oferta eligieron el Kit Completo. Solo por hoy, te lo dejamos por <strong>$11 USD</strong>.</p>
+
+      <div id="upgrade-timer-bar">
+        ⏰ Esta oferta especial termina en: <span id="upgrade-timer">5:00</span>
+      </div>
+
+      <div class="upgrade-compare">
+        <!-- Kit Básico -->
+        <div class="upgrade-col upgrade-col-basic">
+          <h3>Kit Básico</h3>
+          <p class="upgrade-col-price">$7 USD</p>
+          <ul>
+            <li>+80 recursos terapéuticos</li>
+            <li>Organizado por demanda clínica</li>
+            <li>Acceso inmediato</li>
+          </ul>
+        </div>
+        <!-- Kit Completo -->
+        <div class="upgrade-col upgrade-col-complete">
+          <span class="upgrade-recommended">RECOMENDADO</span>
+          <h3>Kit Completo</h3>
+          <p class="upgrade-col-price-old">$14 USD</p>
+          <p class="upgrade-col-price">$11 USD</p>
+          <ul>
+            <li>Todo lo del Kit Básico</li>
+            <li>+ Fichas de Anamnesis Infantil</li>
+            <li>+ Guion de Devolución para Padres</li>
+            <li>+ Checklist de Planificación de Sesión</li>
+            <li>+ Guía de Manejo con Padres Difíciles</li>
+            <li>+ Kit de Psicoeducación Visual</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="upgrade-savings-note">Ahorras $3 USD y recibes 5 bonos extra que resuelven los mayores dolores del día a día clínico.</p>
+
+      <a href="#checkout-completo-promo" id="upgrade-btn-yes" class="upgrade-btn-primary" target="_blank">
+        Sí, quiero el Kit Completo por $11 USD
       </a>
-      <button id="upsell-btn-no" class="upsell-btn-no">
-        No, solo quiero el kit básico
+      <button id="upgrade-btn-no" class="upgrade-btn-secondary">
+        No gracias, prefiero el Kit Básico
       </button>
     </div>
   </div>
@@ -1613,12 +1726,11 @@
   <script>
     lucide.createIcons();
 
-    // ===== CONFIG DEL POPUP UPSELL =====
-    var UPSELL = {
-      checkoutCompleto: 'https://pay.hotmart.com/V105886856J',
-      checkoutBasico:   'https://pay.hotmart.com/I105948104V',
-      precoOriginal:    '$48 USD',
-      precoDesconto:    '$14 USD'
+    // ===== CHECKOUT URLS =====
+    var CHECKOUT = {
+      completo:      'https://pay.hotmart.com/V105886856J',
+      completoPromo: '#checkout-completo-promo',
+      basico:        'https://pay.hotmart.com/I105948104V'
     };
 
     // ===== UTM PASSTHROUGH =====
@@ -1635,44 +1747,93 @@
       } catch(e) { return url; }
     }
 
-    // ===== POPUP UPSELL =====
+    // ===== POPUP UPGRADE =====
     (function() {
-      var overlay  = document.getElementById('upsell-overlay');
-      var btnYes   = document.getElementById('upsell-btn-yes');
-      var btnNo    = document.getElementById('upsell-btn-no');
-      var btnClose = document.getElementById('upsell-close');
-      var trigger  = document.getElementById('btn-basico-trigger');
+      var SESSION_KEY = 'upgrade_popup_shown';
+      var overlay     = document.getElementById('upgrade-overlay');
+      var modal       = document.getElementById('upgrade-modal');
+      var btnYes      = document.getElementById('upgrade-btn-yes');
+      var btnNo       = document.getElementById('upgrade-btn-no');
+      var btnClose    = document.getElementById('upgrade-close');
+      var trigger     = document.getElementById('btn-basico-trigger');
+      var timerEl     = document.getElementById('upgrade-timer');
+      var timerBar    = document.getElementById('upgrade-timer-bar');
+      var timerInterval;
 
-      document.getElementById('upsell-old-price').textContent = UPSELL.precoOriginal;
-      var newEl = document.getElementById('upsell-new-price');
-      var amount = UPSELL.precoDesconto.replace('$','').replace(' USD','').split(',');
-      newEl.innerHTML = '<sup>$</sup>' + amount[0] + (amount[1] ? '<sup>,' + amount[1] + '</sup>' : '');
+      function trackEvent(name) {
+        try { if (window.fbq) fbq('trackCustom', name); } catch(e) {}
+        try { if (window.gtag) gtag('event', name); } catch(e) {}
+        try { if (window.ga) ga('send', 'event', 'upgrade_popup', name); } catch(e) {}
+      }
+
+      function startTimer() {
+        var secs = 5 * 60;
+        function tick() {
+          if (secs <= 0) {
+            clearInterval(timerInterval);
+            if (timerBar) timerBar.style.display = 'none';
+            return;
+          }
+          secs--;
+          var m = Math.floor(secs / 60);
+          var s = secs % 60;
+          if (timerEl) timerEl.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+        }
+        tick();
+        timerInterval = setInterval(tick, 1000);
+      }
 
       function openPopup(e) {
         e.preventDefault();
-        window.open(addUtmsToUrl(UPSELL.checkoutBasico), '_blank');
+        if (sessionStorage.getItem(SESSION_KEY)) {
+          window.open(addUtmsToUrl(CHECKOUT.basico), '_blank');
+          return;
+        }
+        btnYes.href = addUtmsToUrl(CHECKOUT.completoPromo);
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        startTimer();
+        trackEvent('popup_upgrade_viewed');
       }
 
       function closePopup() {
+        sessionStorage.setItem(SESSION_KEY, '1');
+        clearInterval(timerInterval);
         overlay.classList.remove('active');
         document.body.style.overflow = '';
+        trackEvent('popup_upgrade_closed');
       }
 
-      function goBasico() {
-        closePopup();
-        window.open(addUtmsToUrl(UPSELL.checkoutBasico), '_blank');
+      function acceptUpgrade(e) {
+        e.preventDefault();
+        sessionStorage.setItem(SESSION_KEY, '1');
+        clearInterval(timerInterval);
+        trackEvent('popup_upgrade_accepted');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        window.open(addUtmsToUrl(CHECKOUT.completoPromo), '_blank');
+      }
+
+      function declineUpgrade() {
+        sessionStorage.setItem(SESSION_KEY, '1');
+        clearInterval(timerInterval);
+        trackEvent('popup_upgrade_declined');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        window.open(addUtmsToUrl(CHECKOUT.basico), '_blank');
       }
 
       if (trigger) trigger.addEventListener('click', openPopup);
-      btnClose.addEventListener('click', closePopup);
-      btnNo.addEventListener('click', goBasico);
+      if (btnClose) btnClose.addEventListener('click', closePopup);
+      if (btnYes)   btnYes.addEventListener('click', acceptUpgrade);
+      if (btnNo)    btnNo.addEventListener('click', declineUpgrade);
 
       overlay.addEventListener('click', function(e) {
         if (e.target === overlay) closePopup();
       });
 
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closePopup();
+        if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup();
       });
     })();
 
