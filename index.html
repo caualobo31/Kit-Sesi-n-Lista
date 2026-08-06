@@ -436,19 +436,20 @@
       align-items: flex-start;
       gap: 16px;
     }
-    .bonus-num {
+    .bonus-cover {
       flex-shrink: 0;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--teal);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
+      width: 64px;
+      height: 80px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .bonus-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .bonus-body { flex: 1; }
     .bonus-card h4 {
@@ -746,9 +747,9 @@
       .benefits-grid { grid-template-columns: repeat(2, 1fr); }
       .categories-grid { grid-template-columns: 1fr; }
       .value-stack-inner { flex-direction: column; }
-      .value-mockup { width: 100%; min-width: unset; height: auto; }
+      .value-mockup { width: 100%; max-width: 220px; min-width: unset; height: auto; align-self: center; }
       .bonus-card { gap: 12px; }
-      .bonus-num { width: 34px; height: 34px; font-size: 13px; }
+      .bonus-cover { width: 52px; height: 65px; }
       .bonus-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
       .pricing-card.featured { transform: scale(1); }
@@ -779,60 +780,20 @@
     .t-track-wrapper { flex: 1; overflow: hidden; border-radius: 14px; }
     .t-track { display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1); }
     .t-slide { min-width: 100%; padding: 8px 4px; }
-    .testimonial-card {
-      background: var(--white);
+    .testimonial-shot {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .testimonial-shot img {
+      max-width: 100%;
+      max-height: 540px;
+      width: auto;
+      height: auto;
       border-radius: 20px;
-      padding: 36px 40px;
       box-shadow: 0 4px 28px rgba(0,0,0,0.09);
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
       border: 1px solid rgba(0,0,0,0.06);
-    }
-    .testimonial-stars {
-      color: var(--teal);
-      font-size: 22px;
-      letter-spacing: 4px;
-    }
-    .testimonial-text {
-      font-size: 15px;
-      color: var(--body);
-      line-height: 1.75;
-      font-style: italic;
-      max-width: 500px;
-    }
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .testimonial-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      overflow: hidden;
-      border: 2px solid var(--teal-light);
-    }
-    .testimonial-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
       display: block;
-    }
-    .testimonial-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--dark);
-      text-align: left;
-    }
-    .testimonial-country {
-      font-size: 12px;
-      color: var(--muted);
-      text-align: left;
-      margin-top: 3px;
     }
     .t-arrow {
       flex-shrink: 0;
@@ -877,7 +838,7 @@
     }
     @media (max-width: 480px) {
       .t-arrow { display: none; }
-      .testimonial-card { padding: 22px 18px; }
+      .testimonial-shot img { max-height: 420px; }
     }
 
     /* ===== POPUP UPGRADE ===== */
@@ -1159,7 +1120,7 @@
       </p>
 
       <div class="hero-cta-block">
-        <a href="#pricing" class="btn btn-primary">
+        <a href="#preview" class="btn btn-primary">
           Quiero mi kit ahora
         </a>
         <div class="hero-price-note">
@@ -1171,7 +1132,33 @@
     </div>
   </section>
 
-  <!-- ===== SECCIÓN 3: PREVIEW DEL MATERIAL ===== -->
+  <!-- ===== SECCIÓN 3: IDENTIFICACIÓN ===== -->
+  <section id="categories" class="section-white">
+    <div class="container">
+      <h2 class="section-headline">Si alguna vez te quedaste en blanco en una sesión, <span>este kit es para ti</span></h2>
+      <p class="section-sub">Cada recurso fue pensado para una situación real. ¿Conoces ese momento en que el niño llega y no sabes por dónde empezar?</p>
+
+      <div class="categories-grid">
+        <div class="category-item"><i data-lucide="message-circle-off"></i> El niño que llega y no dice nada</div>
+        <div class="category-item"><i data-lucide="zap"></i> El paciente con TDAH que no se queda quieto</div>
+        <div class="category-item"><i data-lucide="heart-crack"></i> El niño que llora y quiere a su mamá</div>
+        <div class="category-item"><i data-lucide="cloud-rain"></i> El que perdió a alguien y no sabe nombrar lo que siente</div>
+        <div class="category-item"><i data-lucide="users"></i> El que vive el divorcio de los padres y está en medio del conflicto</div>
+        <div class="category-item"><i data-lucide="flame"></i> El que no puede regular sus emociones y reacciona con intensidad</div>
+      </div>
+
+      <p style="text-align:center; font-size:13px; color:var(--muted); margin-top:20px; max-width:500px; margin-left:auto; margin-right:auto;">
+        Estas son solo algunas de las situaciones cubiertas. El kit te acompaña en las demandas más frecuentes de la consulta infantil, desde el primer contacto hasta el manejo del día a día.
+      </p>
+      <div style="text-align:center; padding: 24px 0 0;">
+        <a href="#preview" aria-label="Ver el kit por dentro" style="display:inline-flex; color:var(--teal); animation: bounce-arrow 1.4s ease-in-out infinite;">
+          <i data-lucide="chevrons-down" style="width:28px; height:28px;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 4: PREVIEW DEL MATERIAL ===== -->
   <section id="preview">
     <div class="container">
       <h2 class="section-headline">Mira el kit por dentro</h2>
@@ -1202,33 +1189,9 @@
     </div>
 
     <div class="container" style="text-align:center;">
-      <a href="#pricing" class="btn btn-primary btn-center">
+      <a href="#value-stack" class="btn btn-primary btn-center">
         Quiero acceder ahora
       </a>
-    </div>
-  </section>
-
-  <!-- ===== SECCIÓN 4: IDENTIFICACIÓN ===== -->
-  <section id="categories" class="section-white">
-    <div class="container">
-      <h2 class="section-headline">Si alguna vez te quedaste en blanco en una sesión, <span>este kit es para ti</span></h2>
-      <p class="section-sub">Cada recurso fue pensado para una situación real. ¿Conoces ese momento en que el niño llega y no sabes por dónde empezar?</p>
-
-      <div class="categories-grid">
-        <div class="category-item"><i data-lucide="message-circle-off"></i> El niño que llega y no dice nada</div>
-        <div class="category-item"><i data-lucide="zap"></i> El paciente con TDAH que no se queda quieto</div>
-        <div class="category-item"><i data-lucide="heart-crack"></i> El niño que llora y quiere a su mamá</div>
-        <div class="category-item"><i data-lucide="cloud-rain"></i> El que perdió a alguien y no sabe nombrar lo que siente</div>
-        <div class="category-item"><i data-lucide="users"></i> El que vive el divorcio de los padres y está en medio del conflicto</div>
-        <div class="category-item"><i data-lucide="flame"></i> El que no puede regular sus emociones y reacciona con intensidad</div>
-      </div>
-
-      <a href="#pricing" class="btn btn-primary btn-center">
-        Quiero el kit completo
-      </a>
-      <p style="text-align:center; font-size:13px; color:var(--muted); margin-top:20px; max-width:500px; margin-left:auto; margin-right:auto;">
-        Estas son solo algunas de las situaciones cubiertas. El kit te acompaña en las demandas más frecuentes de la consulta infantil, desde el primer contacto hasta el manejo del día a día.
-      </p>
     </div>
   </section>
 
@@ -1261,9 +1224,11 @@
         </div>
       </div>
 
-      <a href="#pricing" class="btn btn-primary btn-center">
-        Quiero mi kit ahora
-      </a>
+      <div style="text-align:center; padding-top: 8px;">
+        <a href="#urgency-block" aria-label="Seguir viendo" style="display:inline-flex; color:var(--teal); animation: bounce-arrow 1.4s ease-in-out infinite;">
+          <i data-lucide="chevrons-down" style="width:28px; height:28px;"></i>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -1274,7 +1239,7 @@
       <p>
         El niño que no se compromete hoy puede abandonar el proceso mañana. La mamá que no entiende lo que está pasando puede cancelar el acompañamiento. Mereces entrar a la sesión con estructura, no con la esperanza de que salga bien.
       </p>
-      <a href="#pricing" class="btn btn-white" style="margin-bottom:24px;">
+      <a href="#value-stack" class="btn btn-white" style="margin-bottom:24px;">
         Quiero estructura en mis sesiones
       </a>
       <div class="seals">
@@ -1291,7 +1256,7 @@
       <h2 class="section-headline">Todo lo que <span>vas a recibir</span></h2>
 
       <div class="value-stack-inner">
-        <img src="imagens/mockupp.png" alt="Kit Consultório Lúdico" class="value-mockup" style="object-fit:contain;" loading="lazy" width="840" height="560" />
+        <img src="imagens/mockupcompleto.png" alt="Kit Consultório Lúdico" class="value-mockup" style="object-fit:contain;" loading="lazy" width="840" height="560" />
 
         <div class="value-content">
           <h2>Kit Sesión Lista<br /><span>+80 recursos terapéuticos</span></h2>
@@ -1313,7 +1278,7 @@
 
       <div class="bonus-grid">
         <div class="bonus-card">
-          <div class="bonus-num">01</div>
+          <div class="bonus-cover"><img src="imagens/bono1.png" alt="Bono 1 — Fichas de Anamnesis Infantil Estructuradas" loading="lazy"></div>
           <div class="bonus-body">
             <h4>Fichas de Anamnesis Infantil Estructuradas</h4>
             <p>Modelos listos para la primera sesión con los padres. Llega preparada desde el inicio.</p>
@@ -1321,7 +1286,7 @@
           </div>
         </div>
         <div class="bonus-card">
-          <div class="bonus-num">02</div>
+          <div class="bonus-cover"><img src="imagens/bono2.png" alt="Bono 2 — Guion de Devolución para Padres" loading="lazy"></div>
           <div class="bonus-body">
             <h4>Guion de Devolución para Padres</h4>
             <p>Scripts listos para dar feedback a los padres de forma clara y profesional. Sin trabarte al hablar.</p>
@@ -1329,7 +1294,7 @@
           </div>
         </div>
         <div class="bonus-card">
-          <div class="bonus-num">03</div>
+          <div class="bonus-cover"><img src="imagens/bono3.png" alt="Bono 3 — Checklist de Planificación de Sesión" loading="lazy"></div>
           <div class="bonus-body">
             <h4>Checklist de Planificación de Sesión</h4>
             <p>Paso a paso para organizar cada sesión antes de empezar. Nada de improvisar.</p>
@@ -1337,7 +1302,7 @@
           </div>
         </div>
         <div class="bonus-card">
-          <div class="bonus-num">04</div>
+          <div class="bonus-cover"><img src="imagens/bono4.png" alt="Bono 4 — Guía de Manejo con Padres Difíciles" loading="lazy"></div>
           <div class="bonus-body">
             <h4>Guía de Manejo con Padres Difíciles</h4>
             <p>Estrategias prácticas para lidiar con padres resistentes, exigentes o ausentes. Lo que muchas psicólogas necesitaban.</p>
@@ -1345,7 +1310,7 @@
           </div>
         </div>
         <div class="bonus-card" style="grid-column: 1 / -1;">
-          <div class="bonus-num">05</div>
+          <div class="bonus-cover"><img src="imagens/bono5.png" alt="Bono 5 — Kit de Psicoeducación Visual para Padres" loading="lazy"></div>
           <div class="bonus-body">
             <h4>Kit de Psicoeducación Visual para Padres</h4>
             <p>Materiales ilustrados para explicar ansiedad, TDAH, regulación emocional. Hace que los padres sean más aliados en el proceso.</p>
@@ -1355,7 +1320,7 @@
       </div>
 
       <div style="text-align:center; margin-top:36px;">
-        <a href="#pricing" class="btn btn-primary">
+        <a href="#testimonials" class="btn btn-primary">
           Quiero el kit completo
         </a>
       </div>
@@ -1375,44 +1340,26 @@
           <div class="t-track">
 
             <div class="t-slide">
-              <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"Llevaba meses improvisando en cada sesión. Compré el kit el viernes y el lunes ya estaba aplicando con un peque que llegó super cerrado. Funcionó increíble. Hoy entro a consulta sabiendo qué hacer."</p>
-                <div class="testimonial-author">
-                  <div class="testimonial-avatar"><img src="imagens/woman-7175038_640.webp" alt="Camila R."></div>
-                  <div>
-                    <p class="testimonial-name">Camila R.</p>
-                    <p class="testimonial-country">Bogotá, Colombia</p>
-                  </div>
-                </div>
+              <div class="testimonial-shot">
+                <img src="imagens/dep1 sl.png" alt="Print de conversa de WhatsApp de psicóloga agradeciendo por los materiales del Kit Sesión Lista" loading="lazy">
               </div>
             </div>
 
             <div class="t-slide">
-              <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"Yo gastaba horas buscando actividades en Pinterest antes de cada sesión. Con este kit ahora abro el PDF, escojo según la demanda y listo. Me devolvió mis tardes y mis sesiones son mucho más profesionales."</p>
-                <div class="testimonial-author">
-                  <div class="testimonial-avatar"><img src="imagens/avatar sp.webp" alt="María José H."></div>
-                  <div>
-                    <p class="testimonial-name">María José H.</p>
-                    <p class="testimonial-country">Ciudad de México, México</p>
-                  </div>
-                </div>
+              <div class="testimonial-shot">
+                <img src="imagens/dep4 sl.png" alt="Print de conversa de WhatsApp con testimonio sobre el Kit Sesión Lista" loading="lazy">
               </div>
             </div>
 
             <div class="t-slide">
-              <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"Tenía pánico a las devoluciones con los papás. El guion de devolución me salvó literalmente. Hice mi primera devolución sin trabarme y los papás salieron felices. Vale cada peso."</p>
-                <div class="testimonial-author">
-                  <div class="testimonial-avatar"><img src="imagens/mariana.webp" alt="Valentina R."></div>
-                  <div>
-                    <p class="testimonial-name">Valentina R.</p>
-                    <p class="testimonial-country">Santiago, Chile</p>
-                  </div>
-                </div>
+              <div class="testimonial-shot">
+                <img src="imagens/dep3 sl.png" alt="Print de conversa de WhatsApp con testimonio sobre el Kit Sesión Lista" loading="lazy">
+              </div>
+            </div>
+
+            <div class="t-slide">
+              <div class="testimonial-shot">
+                <img src="imagens/dep2 sl.png" alt="Print de conversa de WhatsApp con testimonio sobre el Kit Sesión Lista" loading="lazy">
               </div>
             </div>
 
@@ -1424,15 +1371,16 @@
         <button class="t-dot active"></button>
         <button class="t-dot"></button>
         <button class="t-dot"></button>
+        <button class="t-dot"></button>
       </div>
 
-      <div style="text-align:center; padding: 8px 0 0;">
-        <p style="font-size:13px; color:var(--muted); font-weight:500; margin-bottom:10px; letter-spacing:.01em;">
+      <div style="text-align:center; padding: 16px 0 0;">
+        <p style="font-size:14px; color:var(--muted); font-weight:500; margin-bottom:16px; letter-spacing:.01em;">
           Oferta por tiempo limitado. Asegura el tuyo antes de que termine.
         </p>
-        <a href="#pricing" style="display:inline-flex; flex-direction:column; align-items:center; gap:4px; color:var(--teal); font-size:13px; font-weight:700; text-decoration:none; animation: bounce-arrow 1.4s ease-in-out infinite;">
+        <a href="#pricing" class="btn btn-primary btn-center" style="display:inline-flex; align-items:center; gap:10px; animation: bounce-arrow 1.4s ease-in-out infinite;">
           Ver oferta
-          <i data-lucide="chevrons-down" style="width:22px; height:22px;"></i>
+          <i data-lucide="chevrons-down" style="width:20px; height:20px;"></i>
         </a>
       </div>
 
