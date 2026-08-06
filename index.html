@@ -916,102 +916,12 @@
       margin-bottom: 16px;
       text-align: center;
     }
-    #upgrade-timer-bar {
-      background: #fff8e6;
-      border: 1.5px solid var(--gold);
-      border-radius: 10px;
-      padding: 8px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #7A5700;
-      text-align: center;
-      margin-bottom: 18px;
-    }
-    #upgrade-timer-bar span { font-variant-numeric: tabular-nums; font-weight: 800; }
-    .upgrade-compare {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-    .upgrade-col {
-      border-radius: 14px;
-      padding: 18px 14px;
-    }
-    .upgrade-col-basic {
-      background: var(--bg-alt);
-      border: 1.5px solid rgba(0,0,0,0.08);
-      opacity: 0.72;
-    }
-    .upgrade-col-complete {
-      background: var(--teal-light);
-      border: 2px solid var(--teal);
-      position: relative;
-    }
-    .upgrade-recommended {
-      position: absolute;
-      top: -11px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--teal);
-      color: #fff;
-      font-size: 9px;
-      font-weight: 800;
-      padding: 3px 10px;
-      border-radius: 50px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .upgrade-col h3 {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 6px;
-      text-align: center;
-    }
-    .upgrade-col-price {
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--teal-dark);
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    .upgrade-col-price-old {
-      font-size: 12px;
-      color: var(--red);
-      text-decoration: line-through;
-      text-align: center;
-      margin-bottom: 2px;
-    }
-    .upgrade-col ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-    .upgrade-col ul li {
-      font-size: 12px;
-      color: var(--body);
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      line-height: 1.4;
-    }
-    .upgrade-col ul li::before {
-      content: '✓';
-      color: var(--teal);
-      font-weight: 700;
-      flex-shrink: 0;
-      font-size: 11px;
-      margin-top: 1px;
-    }
-    .upgrade-col-basic ul li::before { color: var(--muted); }
-    .upgrade-savings-note {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--teal-dark);
-      background: var(--teal-light);
-      border-radius: 10px;
-      padding: 10px 14px;
-      text-align: center;
-      margin-bottom: 20px;
-      line-height: 1.5;
+    .upgrade-image {
+      display: block;
+      max-width: 220px;
+      width: 100%;
+      height: auto;
+      margin: 4px auto 18px;
     }
     .upgrade-btn-primary {
       display: block;
@@ -1054,8 +964,6 @@
     @media (max-width: 520px) {
       #upgrade-modal { padding: 32px 18px 24px; }
       #upgrade-modal h2 { font-size: 18px; }
-      .upgrade-compare { grid-template-columns: 1fr; }
-      .upgrade-col-complete { order: -1; }
     }
   </style>
   <script>
@@ -1434,9 +1342,9 @@
             <p style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px; margin-bottom:6px;">Pago único &bull; acceso inmediato</p>
             <p class="price-savings" id="price-completo-savings">Ahorras $34 USD</p>
           </div>
-          <a href="https://pay.hotmart.com/V105886856J?checkoutMode=10" id="btn-completo-direct" target="_blank" class="btn btn-primary btn-full">
+          <button type="button" id="btn-completo-direct" class="btn btn-primary btn-full">
             Quiero el kit completo
-          </a>
+          </button>
           <ul class="pricing-items" style="text-align:left; margin-top:20px;">
             <li><i data-lucide="check-circle-2"></i> +160 recursos terapéuticos lúdicos</li>
             <li><i data-lucide="check-circle-2"></i> Organizados por demanda clínica</li>
@@ -1624,48 +1532,22 @@
         <span class="upgrade-badge">⚡ OFERTA ESPECIAL</span>
       </div>
 
-      <h2 id="upgrade-title">¡Espera! Antes de continuar...</h2>
-      <p class="upgrade-subtitle">El 92% de las psicólogas que vieron esta oferta eligieron el Kit Completo. Solo por hoy, te lo dejamos por <strong>$11 USD</strong>.</p>
+      <h2 id="upgrade-title">¡Espera! Tenemos una oferta exclusiva para ti</h2>
+      <p class="upgrade-subtitle">Aprovecha y llévate el Kit Completo con los 5 bonos exclusivos por un precio especial. Son más de $34 USD en materiales extra por mucho menos de lo que imaginas.</p>
 
-      <div id="upgrade-timer-bar">
-        ⏰ Esta oferta especial termina en: <span id="upgrade-timer">5:00</span>
+      <img src="imagens/mockupcompleto.png" alt="Kit Completo Sesión Lista" class="upgrade-image" loading="lazy" />
+
+      <div class="price-block">
+        <p class="price-old">$14 USD</p>
+        <p class="price-main"><sup>$</sup>11</p>
+        <p class="price-installments">Pago único. Acceso inmediato.</p>
       </div>
 
-      <div class="upgrade-compare">
-        <!-- Kit Básico -->
-        <div class="upgrade-col upgrade-col-basic">
-          <h3>Kit Básico</h3>
-          <p class="upgrade-col-price">$7 USD</p>
-          <ul>
-            <li>+80 recursos terapéuticos</li>
-            <li>Organizado por demanda clínica</li>
-            <li>Acceso inmediato</li>
-          </ul>
-        </div>
-        <!-- Kit Completo -->
-        <div class="upgrade-col upgrade-col-complete">
-          <span class="upgrade-recommended">RECOMENDADO</span>
-          <h3>Kit Completo</h3>
-          <p class="upgrade-col-price-old">$14 USD</p>
-          <p class="upgrade-col-price">$11 USD</p>
-          <ul>
-            <li>Todo lo del Kit Básico</li>
-            <li>+ Fichas de Anamnesis Infantil</li>
-            <li>+ Guion de Devolución para Padres</li>
-            <li>+ Checklist de Planificación de Sesión</li>
-            <li>+ Guía de Manejo con Padres Difíciles</li>
-            <li>+ Kit de Psicoeducación Visual</li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="upgrade-savings-note">Ahorras $3 USD y recibes 5 bonos extra que resuelven los mayores dolores del día a día clínico.</p>
-
-      <a href="https://pay.hotmart.com/V105886856J?off=sr939rzm&checkoutMode=10" id="upgrade-btn-yes" class="upgrade-btn-primary" target="_blank">
-        Sí, quiero el Kit Completo por $11 USD
-      </a>
+      <button type="button" id="upgrade-btn-yes" class="upgrade-btn-primary">
+        Quiero el kit completo con descuento
+      </button>
       <button id="upgrade-btn-no" class="upgrade-btn-secondary">
-        No gracias, prefiero el Kit Básico
+        No, prefiero solo el kit básico
       </button>
     </div>
   </div>
@@ -1704,31 +1586,11 @@
       var btnNo       = document.getElementById('upgrade-btn-no');
       var btnClose    = document.getElementById('upgrade-close');
       var trigger     = document.getElementById('btn-basico-trigger');
-      var timerEl     = document.getElementById('upgrade-timer');
-      var timerBar    = document.getElementById('upgrade-timer-bar');
-      var timerInterval;
 
       function trackEvent(name) {
         try { if (window.fbq) fbq('trackCustom', name); } catch(e) {}
         try { if (window.gtag) gtag('event', name); } catch(e) {}
         try { if (window.ga) ga('send', 'event', 'upgrade_popup', name); } catch(e) {}
-      }
-
-      function startTimer() {
-        var secs = 5 * 60;
-        function tick() {
-          if (secs <= 0) {
-            clearInterval(timerInterval);
-            if (timerBar) timerBar.style.display = 'none';
-            return;
-          }
-          secs--;
-          var m = Math.floor(secs / 60);
-          var s = secs % 60;
-          if (timerEl) timerEl.textContent = m + ':' + (s < 10 ? '0' : '') + s;
-        }
-        tick();
-        timerInterval = setInterval(tick, 1000);
       }
 
       function openPopup(e) {
@@ -1737,25 +1599,20 @@
           window.open(addUtmsToUrl(CHECKOUT.basico), '_blank');
           return;
         }
-        btnYes.href = addUtmsToUrl(CHECKOUT.completoPromo);
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
-        startTimer();
         trackEvent('popup_upgrade_viewed');
       }
 
       function closePopup() {
         sessionStorage.setItem(SESSION_KEY, '1');
-        clearInterval(timerInterval);
         overlay.classList.remove('active');
         document.body.style.overflow = '';
         trackEvent('popup_upgrade_closed');
       }
 
       function acceptUpgrade(e) {
-        e.preventDefault();
         sessionStorage.setItem(SESSION_KEY, '1');
-        clearInterval(timerInterval);
         trackEvent('popup_upgrade_accepted');
         overlay.classList.remove('active');
         document.body.style.overflow = '';
@@ -1764,7 +1621,6 @@
 
       function declineUpgrade() {
         sessionStorage.setItem(SESSION_KEY, '1');
-        clearInterval(timerInterval);
         trackEvent('popup_upgrade_declined');
         overlay.classList.remove('active');
         document.body.style.overflow = '';
@@ -1787,16 +1643,12 @@
 
     // ===== UTM passthrough em todos os links de checkout =====
     (function() {
-      var links = [
-        document.getElementById('btn-completo-direct')
-      ];
-      links.forEach(function(el) {
-        if (!el) return;
-        el.addEventListener('click', function(e) {
-          e.preventDefault();
-          window.open(addUtmsToUrl(el.href), '_blank');
+      var btnCompleto = document.getElementById('btn-completo-direct');
+      if (btnCompleto) {
+        btnCompleto.addEventListener('click', function() {
+          window.open(addUtmsToUrl(CHECKOUT.completo), '_blank');
         });
-      });
+      }
     })();
 
     // ===== Carrusel de Testimonios =====
